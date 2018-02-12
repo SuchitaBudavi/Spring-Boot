@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class Topic {
 	
 	@Id
-	private String id; 
+	private String topicId; 
 	private String name;
 	private String description;
 	
@@ -16,15 +16,16 @@ public class Topic {
 	}
 	public Topic(String id, String name, String desc) {
 		super();
-		this.id = id;
+		this.topicId = id;
 		this.name = name;
 		this.description = desc;
 	}
-	public String getId() {
-		return id;
+	
+	public String getTopicId() {
+		return topicId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setTopicId(String topicId) {
+		this.topicId = topicId;
 	}
 	public String getName() {
 		return name;

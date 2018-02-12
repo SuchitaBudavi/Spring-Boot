@@ -19,12 +19,13 @@ public class TopicService {
 	@Autowired
 	TopicRepository topicRepo;
 	
-	ArrayList<Topic> topics = new ArrayList<Topic>(Arrays.asList(
+	/*= new ArrayList<Topic>(Arrays.asList(
 			new Topic("1","Core Java","Core Java"),
 			new Topic("2","Spring","Spring"),
-			new Topic("3","Spring Boot","Spring Boot")));		
+			new Topic("3","Spring Boot","Spring Boot")));		*/
 	
 	public List<Topic> getAllTopics() {
+		ArrayList<Topic> topics = new ArrayList<Topic>(); 
 		Iterable<Topic> i = topicRepo.findAll();
 		for (Topic topic : i) {
 			topics.add(topic);
@@ -33,7 +34,8 @@ public class TopicService {
 	}
 	
 	public Topic getATopic(String id) {
-		return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+		//return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+		return topicRepo.findOne(id);
 	}
 	
 	public void addATopic(Topic t) {
@@ -42,13 +44,15 @@ public class TopicService {
 	}
 	
 	public void updateATopic(Topic t) {
-		Topic temp = getATopic(t.getId());
-		BeanUtils.copyProperties(t, temp);
+		/*Topic temp = getATopic(t.getId());
+		BeanUtils.copyProperties(t, temp);*/
+		topicRepo.save(t);
 	}
 	
 	public void deleteATopic(String id) {
 		/*Topic temp = getATopic(id);
 		topics.remove(temp);*/
-		topics.removeIf(t -> t.getId().equals(id));
+		//topics.removeIf(t -> t.getId().equals(id));
+		topicRepo.delete(id);
 	}
 }

@@ -21,6 +21,7 @@ public class TopicController {
 	
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopics(){
+		System.out.println("TopicController.getAllTopics");
 		return topicService.getAllTopics();
 	}
 	
@@ -40,7 +41,7 @@ public class TopicController {
 	}
 	
 	@RequestMapping(value = "/topics/{id}",method=RequestMethod.DELETE)
-	public void updateATopic(@PathVariable("id") String id) {
+	public void deleteATopic(@PathVariable("id") String id) {
 		topicService.deleteATopic(id);
 	}
 }
