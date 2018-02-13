@@ -1,7 +1,12 @@
 package com.suchi.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Topic {
@@ -10,6 +15,10 @@ public class Topic {
 	private String topicId; 
 	private String name;
 	private String description;
+	@OneToMany
+	@JoinTable(name="TOPIC_BOOK",joinColumns=@JoinColumn(name="TOPIC_ID"),inverseJoinColumns=@JoinColumn(name="BOOK_ID"))
+	private List<Book> boooks;
+	
 	
 	public Topic() {
 		super();
