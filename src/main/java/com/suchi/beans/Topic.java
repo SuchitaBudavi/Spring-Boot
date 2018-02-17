@@ -3,9 +3,11 @@ package com.suchi.beans;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,10 +17,10 @@ public class Topic {
 	private String topicId; 
 	private String name;
 	private String description;
-	@OneToMany
-	@JoinTable(name="TOPIC_BOOK",joinColumns=@JoinColumn(name="TOPIC_ID"),inverseJoinColumns=@JoinColumn(name="BOOK_ID"))
-	private List<Book> boooks;
 	
+	//@OneToMany(fetch=FetchType.LAZY,mappedBy="topic")
+	//@JoinTable(name="TOPIC_BOOK",joinColumns=@JoinColumn(name="TOPIC_ID"),inverseJoinColumns=@JoinColumn(name="BOOK_ID"))
+	//private List<Book> books;
 	
 	public Topic() {
 		super();
@@ -47,5 +49,12 @@ public class Topic {
 	}
 	public void setDescription(String desc) {
 		this.description = desc;
-	}		
+	}
+	/*public List<Book> getBooks() {
+		return books;
+	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}*/
+	
 }

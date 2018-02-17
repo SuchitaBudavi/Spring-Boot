@@ -5,9 +5,13 @@ import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Book {
@@ -15,14 +19,24 @@ public class Book {
 	@Id @GeneratedValue
 	private int bookId;
 	private String title;	
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="RATING_ID")
 	private BookRating rating;
 	@ElementCollection
 	private List<Blurb> blurbs;
 	@Embedded
 	private Author author;
+	@ManyToOne
+	@JoinColumn(name="TOPIC_ID")
+	private Topic topic;
 	
 	
+	public Topic getTopic() {
+		return topic;
+	}
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
 	public Author getAuthor() {
 		return author;
 	}
